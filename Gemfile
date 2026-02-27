@@ -9,6 +9,9 @@ gem "pg", ">= 1.1"
 gem "puma", ">= 7.0"
 gem "bootsnap", require: false
 
+# simplifies the syntax for making requests and is a popular choice for integrating with external APIs.
+gem "httparty"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -18,6 +21,13 @@ group :development, :test do
   gem "rubocop-factory_bot", require: false
   gem "rubocop-rspec_rails", require: false
   gem "rspec-rails", "~> 6.1.3"
+end
+
+group :test do
+  # VCR records HTTP interactions and replays them during test runs, allowing you to test your code without making actual HTTP requests.
+  gem "vcr"
+  # WebMock allows you to stub HTTP requests and set expectations on them, making it easier to test code that interacts with external APIs.
+  gem "webmock"
 end
 
 group :development do
