@@ -20,6 +20,7 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
         expect(json_response.keys).to include("metadata", "issues")
         expect(json_response["issues"].first["id"]).to eq("5")
         expect(json_response["issues"].last["id"]).to eq("1")
+        expect(response.headers["ISSUES_COUNT"]).to eq 2
       end
     end
 
@@ -28,9 +29,9 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
 
       it "returns only open issues" do
         expect(response).to have_http_status(:ok)
-        issues = JSON.parse(response.body)["issues"]
-        expect(issues.size).to eq(1)
-        expect(issues.first["state"]).to eq("open")
+        expect(json_response["issues"].size).to eq(1)
+        expect(json_response["issues"].first["state"]).to eq("open")
+        expect(response.headers["ISSUES_COUNT"]).to eq 2
       end
     end
   end
