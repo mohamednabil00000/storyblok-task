@@ -5,8 +5,8 @@ require "rails_helper"
 RSpec.describe Api::V1::IssuesController, type: :controller do
   describe "GET #index" do
     let(:user) { create(:user) }
-    let!(:open_issue) { create(:issue, state: "open", user:) }
-    let!(:closed_issue) { create(:issue, state: "closed", user:) }
+    let!(:open_issue) { create(:issue, state: "open", user:, id: "1") }
+    let!(:closed_issue) { create(:issue, state: "closed", user:, id: "5") }
     let(:json_response) { JSON.parse(response.body) }
 
     before { get :index, params: }
@@ -18,6 +18,8 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(json_response["issues"].size).to eq(2)
         expect(json_response.keys).to include("metadata", "issues")
+        expect(json_response["issues"].first["id"]).to eq("5")
+        expect(json_response["issues"].last["id"]).to eq("1")
       end
     end
 

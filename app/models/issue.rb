@@ -5,4 +5,6 @@ class Issue < ApplicationRecord
 
   validates :number, presence: true
   validates :state, presence: true
+
+  scope :ordered, -> { order(id: :desc) }
 end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V1::IssuesController < Api::BaseController
-  # GET /api/v1/issues
+  # GET /api/v1/issues?page=1&state=open
   def index
     issues = Issue.includes(:user)
     result = Issues::ApplyFiltersService.call(issues:, filter_params:)
     if result.success?
-      pagy, issues = pagy(result.payload)
+      pagy, issues = pagy(result.payload.ordered)
 
       render json: { issues: IssueSerializer.collection(issues), metadata: pagy.data_hash }, status: :ok
     else
