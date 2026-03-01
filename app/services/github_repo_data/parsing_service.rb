@@ -3,7 +3,7 @@
 class GithubRepoData::ParsingService < BaseService
   def initialize(data:, offset: nil)
     @data = data
-    @offset = offset
+    @offset = offset&.to_s
   end
 
   def call
@@ -12,7 +12,7 @@ class GithubRepoData::ParsingService < BaseService
     @offset_reached = false
 
     data.each do |issue_data|
-      if issue_data["id"] == offset
+      if issue_data["id"].to_s == offset
         @offset_reached = true
         break
       end
