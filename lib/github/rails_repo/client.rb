@@ -10,7 +10,7 @@ module Github
 
       class << self
         def get_issues(page: 1)
-          result = HTTParty.get("#{BASE_URL}/issues?page=#{page}&per_page=50", headers: auth_headers)
+          result = HTTParty.get("#{BASE_URL}/issues?state=all&page=#{page}&per_page=50", headers: auth_headers)
           if result.code == 200
             Response.new(true, JSON.parse(result.body), nil)
           else
