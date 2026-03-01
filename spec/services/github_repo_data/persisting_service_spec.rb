@@ -11,7 +11,7 @@ RSpec.describe GithubRepoData::PersistingService, type: :service do
           login: "testuser",
           avatar_url: "https://avatars.githubusercontent.com/u/123?v=4",
           url: "https://api.github.com/users/testuser",
-          type: "User"
+          user_type: "User"
         }
       ]
     end
@@ -48,14 +48,14 @@ RSpec.describe GithubRepoData::PersistingService, type: :service do
             login: "testuser",
             avatar_url: "https://avatars.githubusercontent.com/u/123?v=4",
             url: "https://api.github.com/users/testuser",
-            type: "User"
+            user_type: "User"
           },
           {
             id: 123,
             login: "testuser",
             avatar_url: "https://avatars.githubusercontent.com/u/123?v=4",
             url: "https://api.github.com/users/testuser",
-            type: "User"
+            user_type: "User"
           }
         ]
       end

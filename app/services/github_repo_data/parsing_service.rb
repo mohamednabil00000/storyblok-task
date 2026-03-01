@@ -36,7 +36,7 @@ class GithubRepoData::ParsingService < BaseService
         login: user_data["login"],
         avatar_url: user_data["avatar_url"],
         url: user_data["url"],
-        type: user_data["type"]
+        user_type: user_data["type"]
       }
     end
 

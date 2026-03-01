@@ -21,7 +21,7 @@ RSpec.describe IssueSerializer do
           login: user.login,
           avatar_url: user.avatar_url,
           url: user.url,
-          type: user.type
+          type: user.user_type
         },
         created_at: issue.created_at,
         updated_at: issue.updated_at

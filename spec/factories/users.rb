@@ -5,6 +5,6 @@ FactoryBot.define do
     login { "test_user" }
     avatar_url { "https://example.com/avatar.png" }
     url { "https://example.com/user" }
-    type { "User" }
+    user_type { "User" }
   end
 end
