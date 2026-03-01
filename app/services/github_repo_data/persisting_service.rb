@@ -8,7 +8,7 @@ class GithubRepoData::PersistingService < BaseService
 
   def call
     ActiveRecord::Base.transaction do
-      User.insert_all!(users_data)
+      User.insert_all(users_data)
       Issue.insert_all!(issues_data)
     end
 
