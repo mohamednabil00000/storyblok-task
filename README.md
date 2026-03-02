@@ -62,7 +62,7 @@ API will be available at `http://localhost:3000`.
 From the project root:
 
 ```bash
-docker compose -f docker-compose.yml up --build
+docker-compose up --build
 ```
 
 This will start:
