@@ -5,8 +5,9 @@ Small Rails 8 API that synchronizes GitHub issues from the `rails/rails` reposit
 ## Tech stack
 - **Ruby**: 4.0.1  
 - **Rails**: 8.1  
-- **Database**: PostgreSQL  
-- **Background jobs**: Sidekiq + Redis  
+- **Database**: PostgreSQL
+- **Cache**: Redis
+- **Background jobs**: Sidekiq  
 - **Pagination**: Pagy (keyset)  
 - **Tests**: RSpec
 
