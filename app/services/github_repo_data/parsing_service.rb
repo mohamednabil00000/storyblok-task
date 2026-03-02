@@ -10,6 +10,7 @@ class GithubRepoData::ParsingService < BaseService
     @users = []
     @issues = []
     @offset_reached = false
+    @recent_issue_id = nil
 
     data.each do |issue_data|
       if offset && issue_data["id"].to_s == offset
@@ -17,12 +18,16 @@ class GithubRepoData::ParsingService < BaseService
         break
       end
 
+      @recent_issue_id = issue_data["id"] unless @recent_issue_id
+
+      next if issue_data.key?("pull_request") # skip if the row is a pull request
+
       push_user_row!(issue_data["user"])
       push_issue_row!(issue_data)
     end
 
     @users.uniq! { |user| user[:id] }
-    success(users: @users, issues: @issues, offset_reached: @offset_reached)
+    success(users: @users, issues: @issues, offset_reached: @offset_reached, recent_issue_id: @recent_issue_id)
   rescue StandardError => e
     Rails.logger.error("data parsing failed: #{e.message}")
     failure("data parsing failed: #{e.message}")

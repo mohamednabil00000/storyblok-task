@@ -95,13 +95,12 @@ RSpec.describe GithubRepoData::PersistingService, type: :service do
         ]
       end
 
-      it "doesn't persist the data and return failure" do
+      it "persist only the distinct rows" do
         expect do
           result = described_class.call(users_data:, issues_data:)
-          expect(result).not_to be_success
-          expect(result.error).to include "duplicate key value"
-        end.to change(User, :count).by(0)
-            .and change(Issue, :count).by(0)
+          expect(result).to be_success
+        end.to change(User, :count).by(1)
+            .and change(Issue, :count).by(1)
       end
     end
 

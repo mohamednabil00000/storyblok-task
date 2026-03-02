@@ -44,7 +44,7 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
             login: "user1",
             avatar_url: "https://example.com/avatar",
             url: "https://api.github.com/users/1",
-            type: "User"
+            user_type: "User"
           }
         ],
         issues: [
@@ -59,7 +59,8 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
             user_id: 123
           }
         ],
-        offset_reached: true
+        offset_reached: true,
+        recent_issue_id: 456
       }
     end
 
@@ -204,7 +205,7 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
               login: "user1",
               avatar_url: "https://example.com/avatar",
               url: "https://api.github.com/users/1",
-              type: "User"
+              user_type: "User"
             }
           ],
           issues: [
@@ -219,7 +220,8 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
               user_id: 123
             }
           ],
-          offset_reached: false
+          offset_reached: false,
+          recent_issue_id: 456
         }
       end
 
@@ -238,7 +240,8 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
               user_id: 123
             }
           ],
-          offset_reached: true
+          offset_reached: true,
+          recent_issue_id: 455
         }
       end
 
