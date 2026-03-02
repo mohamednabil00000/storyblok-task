@@ -150,11 +150,11 @@ Example:
 
 ### 5. Tricks
   
-  #### Github has two kinds of pagination:
+  #### - Github has two kinds of pagination:
   - page pagination based.
   - cursor pagination based.
 
-  By using page pagination based only, you can't get more than 99 pages. if you want page #100 you will get this error
+  By using page pagination based only, you can't get more than 99 pages. if you want page #100 you will get this error.
   ```bash
   result = HTTParty.get("#{BASE_URL}/issues?state=all&page=#{100}&per_page=100", headers: auth_headers)
 
@@ -162,6 +162,10 @@ Example:
   ```
 
   So in our case since the issues can be more than that, we need to use page & cursor pagination based.
+
+  #### - Updated rows will not be synced:
+
+  Our system just pull the new issues only but if any old issue being updated, we will not get this update, so to do that we need to activate the webhook or at least create a job to run once a day to fetch all the issues again and update them.
 
 ---
 
@@ -173,6 +177,9 @@ Example:
 - **our api shouldn't depend on the status of github servers.**
 - **In real time, user can't jump to page 100 directly(discussed in tricks section).**
 
+#### making the ID of issues table string intead of id due to
+- **number of issues is unlimited and now is about 10 digits so I am afraid after few years github convert it to uuid or string also and that's why I did it string from the beginning to not lose any records in the future in case if github converted it.**
+- **so the trade off here is I have to create additional index for created at to return the rows in decending order like github instead of using the id as the id is string and sorting happen in lexicographically not numerically.**
 
 ---
 
