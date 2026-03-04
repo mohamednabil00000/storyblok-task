@@ -23,11 +23,13 @@ class GithubIssuesSynchronizerJob < ApplicationJob
 
       offset_reached = parsed_data_result.payload[:offset_reached]
 
-      persisted_data_result = GithubRepoData::PersistingService.call(
-        users_data: parsed_data_result.payload[:users],
-        issues_data: parsed_data_result.payload[:issues]
-      )
-      return unless persisted_data_result.success?
+      if parsed_data_result.payload[:issues].size > 0
+        persisted_data_result = GithubRepoData::PersistingService.call(
+          users_data: parsed_data_result.payload[:users],
+          issues_data: parsed_data_result.payload[:issues]
+        )
+        return unless persisted_data_result.success?
+      end
 
       break if http_result.payload[:after_cursor].nil?
 
