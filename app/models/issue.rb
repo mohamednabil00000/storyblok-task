@@ -6,5 +6,5 @@ class Issue < ApplicationRecord
   validates :number, presence: true
   validates :state, presence: true
 
-  scope :ordered, -> { order(created_at: :desc) }
+  scope :ordered, -> { order(id: :desc) }
 end
