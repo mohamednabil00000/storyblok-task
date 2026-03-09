@@ -142,7 +142,6 @@ Example:
 }
 ```
 
-
 ## 5. Tricks
   
   ### - Github has two kinds of pagination:
@@ -160,7 +159,7 @@ Example:
 
   ### - Updated rows will not be synced:
 
-  Our system just pull the new issues only but if any old issue being updated, we will not get this update, so to do that we need to activate the webhook or at least create a job to run once a day to fetch all the issues again and update them.
+  Our system get the old issues first time and then just pull the new issues after that every 5 mins but if any old issue being updated, we will not get this update, so to do that we need to activate the webhook or at least create a job to run once a day to fetch all the issues again and update them.
 
 
 ## 6. Trades off
