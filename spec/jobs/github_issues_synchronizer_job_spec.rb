@@ -32,7 +32,6 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
           }
         ],
         after_cursor: 12345,
-        before_cursor: nil
       }
     end
 
@@ -102,7 +101,7 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
     context "when first page returns empty issues" do
       before do
         allow(Github::RailsRepo::Client).to receive(:get_issues).with(page: 1, cursor: nil).and_return(
-          double(success?: true, payload: { body: [], before_cursor: nil, after_cursor: nil })
+          double(success?: true, payload: { body: [], after_cursor: nil })
         )
         allow(GithubRepoData::ParsingService).to receive(:call).and_return(
           double(success?: true, payload: { users: [], issues: [], offset_reached: false })
@@ -193,7 +192,6 @@ RSpec.describe GithubIssuesSynchronizerJob, type: :job do
           }
         ],
         after_cursor: nil,
-        before_cursor: nil
       }
       end
 

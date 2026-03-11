@@ -15,7 +15,6 @@ RSpec.describe Github::RailsRepo::Client do
       expect(result.success?).to be true
       expect(result.payload[:body]).to be_an(Array)
       expect(result.payload[:after_cursor]).not_to be_nil
-      expect(result.payload[:before_cursor]).to be_nil
     end
   end
 

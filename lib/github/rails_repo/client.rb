@@ -20,8 +20,7 @@ module Github
               true,
               {
                 body: JSON.parse(result.body),
-                after_cursor: result.headers["link"][/[?&]after=([^&>]+)/, 1],
-                before_cursor: result.headers["link"][/[?&]before=([^&>]+)/, 1]
+                after_cursor: result.headers["link"][/[?&]after=([^&>]+)/, 1]
               },
               nil
             )
